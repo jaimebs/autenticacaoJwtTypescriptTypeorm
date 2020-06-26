@@ -27,6 +27,27 @@ class UserController{
     res.status(201).json(user);
   }
 
+  async update(req:Request, res:Response){
+    const repository = getRepository(User);
+
+    const { id } = req.params;
+    const { email, password } = req.body;
+
+    await repository.update(id, { email, password });
+       
+    res.status(200).json({ email, password });
+  }
+
+  async delete(req:Request, res:Response){
+    const repository = getRepository(User);
+
+    const { id } = req.params;
+
+    await repository.delete(id)
+       
+    res.status(200).json({message: 'Usuário deletado'});
+  }
+
 }
 
 export default new UserController();

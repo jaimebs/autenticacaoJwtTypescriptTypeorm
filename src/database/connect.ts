@@ -1,3 +1,4 @@
-import {createConnection} from 'typeorm';
+import { createConnection } from 'typeorm';
 
-createConnection().then(()=> console.log('🎁 Bando de dados conectado!'));
+// eslint-disable-next-line no-console
+createConnection().then(() => console.log('🎁 Bando de dados conectado!'));

@@ -1,17 +1,17 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-interface ITokenPayload{
-  id: string,
-  iat: number,
-  exp: number
+interface ITokenPayload {
+  id: string;
+  iat: number;
+  exp: number;
 }
 
-export default function authMiddleware(req: Request, res: Response, next: NextFunction){
+export default function authMiddleware(req: Request, res: Response, next: NextFunction) {
   const { authorization } = req.headers;
 
-  if(!authorization){
-    res.status(401).json({message: 'token não encontrado.'})
+  if (!authorization) {
+    return res.status(401).json({ message: 'token não encontrado.' });
   }
 
   const token = authorization!.replace('Bearer', '').trim();
@@ -23,9 +23,7 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
     req.userId = id;
 
     return next();
-    
   } catch {
-    res.sendStatus(401);
+    return res.sendStatus(401);
   }
-
 }

@@ -4,17 +4,17 @@ import bcrypt from 'bcryptjs';
 @Entity('users')
 class User {
   @PrimaryGeneratedColumn('uuid')
-  id: string
+  id: string;
 
   @Column()
-  email: string
+  email: string;
 
   @Column()
-  password: string
+  password: string;
 
   @BeforeInsert()
   @BeforeUpdate()
-  hashPassword(){
+  hashPassword() {
     this.password = bcrypt.hashSync(this.password, 8);
   }
 }

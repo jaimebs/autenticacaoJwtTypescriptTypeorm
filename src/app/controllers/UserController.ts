@@ -35,7 +35,7 @@ class UserController {
 
     await repository.update(id, { email, password });
 
-    res.status(200).json({ email, password });
+    return res.status(200).json({ email, password });
   }
 
   async delete(req: Request, res: Response) {
@@ -45,7 +45,7 @@ class UserController {
 
     await repository.delete(id);
 
-    res.status(200).json({ message: 'Usuário deletado' });
+    return res.status(200).json({ message: 'Usuário deletado' });
   }
 }
 
